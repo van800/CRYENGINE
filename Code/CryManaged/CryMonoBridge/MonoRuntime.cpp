@@ -13,6 +13,8 @@
 
 #include "ManagedPlugin.h"
 
+#include "mono/metadata/profiler.h"
+
 #include "NativeToManagedInterfaces/Entity.h"
 #include "NativeToManagedInterfaces/Console.h"
 #include "NativeToManagedInterfaces/Audio.h"
@@ -134,6 +136,17 @@ bool CMonoRuntime::InitializeRuntime()
 
 	gEnv->pLog->LogAlways("[Mono] Debugger server active on port: %d and suspended is set to %s", softDebuggerPort, szSuspend);
 #endif
+
+	const string mono_env_options(getenv("MONO_ENV_OPTIONS"));
+	if (mono_env_options != nullptr)
+	{
+		// Usually MONO_ENV_OPTIONS looks like:   --profile=jb:prof=timeline,ctl=remote,host=127.0.0.1:55467
+		const string prefix = "--profile=";
+		if (mono_env_options.substr(0, prefix.length()) == prefix) {
+			const auto ops = mono_env_options.substr(prefix.length(), mono_env_options.length());
+			mono_profiler_load(ops);
+		}
+	}
 
 	// Find the Mono configuration directory
 	char engineRoot[_MAX_PATH];
