@@ -59,6 +59,7 @@ namespace MonoInternals
 #include <mono/metadata/class.h>
 #include <mono/metadata/exception.h>
 #include <mono/metadata/reflection.h>
+#include <mono/metadata/profiler.h>
 }
 
 #define HAVE_MONO_API
