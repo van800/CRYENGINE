@@ -10,6 +10,7 @@ add_sources("CryMonoBridge_main_uber_1.cpp"
 		"MonoRuntime.cpp"
 		"ManagedPlugin.h"
 		"ManagedPlugin.cpp"
+		"MonoProfilerExports.cpp"
 		"resource.h"
 		"StdAfx.h"
 )
