@@ -71,3 +71,6 @@
 #pragma comment(linker, "/export:mono_signature_get_params")
 #pragma comment(linker, "/export:mono_metadata_decode_value")
 #pragma comment(linker, "/export:mono_type_get_type")
+#pragma comment(linker, "/export:mono_profiler_set_jit_done_callback")
+#pragma comment(linker, "/export:mono_jit_info_get_code_start")
+#pragma comment(linker, "/export:mono_jit_info_get_code_size")
